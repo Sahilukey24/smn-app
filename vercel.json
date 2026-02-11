@@ -1,9 +1,16 @@
 {
-  "buildCommand": "flutter upgrade && flutter pub get && flutter build web --release",
-  "outputDirectory": "build/web",
-  "devCommand": "flutter run -d chrome",
-  "installCommand": "flutter pub get",
-  "framework": null,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "zeroConfig": false,
+        "dockerImage": "ghcr.io/cirruslabs/flutter:stable",
+        "buildCommand": "flutter build web --release",
+        "outputDirectory": "build/web"
+      }
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
