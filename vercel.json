@@ -1,7 +1,14 @@
 {
-  "installCommand": "git clone https://github.com/flutter/flutter.git --depth 1 -b stable && ./flutter/bin/flutter config --enable-web && ./flutter/bin/flutter doctor",
-  "buildCommand": "./flutter/bin/flutter pub get && ./flutter/bin/flutter build web --release",
-  "outputDirectory": "build/web",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "git clone https://github.com/flutter/flutter.git --depth 1 -b stable ./flutter && ./flutter/bin/flutter config --enable-web && ./flutter/bin/flutter pub get && ./flutter/bin/flutter build web --release",
+        "outputDirectory": "build/web"
+      }
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
