@@ -1,0 +1,8 @@
+-- MVP order flow: uses existing tables
+--   orders (buyer_id, provider_id as creator_id, service_id, total_inr as amount, status)
+--   order_items (order_id, service_id, price_inr)
+--   order_timeline (order_id, event_type, title, description, created_at)
+--   chat_rooms (order_id, buyer_id, creator_id)
+--   order_deliveries (order_id, uploaded_by, file_path) - only creator can insert (RLS in 004)
+--   profiles.balance_inr - credited on approve
+-- RLS already in place: order parties read orders; creator upload delivery; buyer approve in app.
